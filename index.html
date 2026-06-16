@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shalon Ngobeni — Data Scientist</title>
+<meta name="description" content="Portfolio of Shalon Thlarihani Ngobeni — Data Science student building ML pipelines, cloud data engineering, and analytics projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0D1117;
+    --surface:#161B22;
+    --surface-2:#1C2128;
+    --line:#262C36;
+    --text:#E6E1D8;
+    --text-dim:#8B92A0;
+    --accent:#4FB286;
+    --accent-dim:#3a8c69;
+    --warm:#C97D4C;
+    --mono:'JetBrains Mono', monospace;
+    --sans:'Inter', sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  ::selection{background:var(--accent);color:var(--bg);}
+
+  .bg-grid{
+    position:fixed;
+    inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:48px 48px;
+    opacity:0.25;
+    z-index:0;
+    pointer-events:none;
+    mask-image:radial-gradient(circle at 50% 0%, rgba(0,0,0,0.9), transparent 70%);
+  }
+
+  .wrap{
+    max-width:880px;
+    margin:0 auto;
+    padding:0 24px;
+    position:relative;
+    z-index:1;
+  }
+
+  /* NAV */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(13,17,23,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 24px;
+  }
+  .nav-brand{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:14px;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .nav-brand .dot{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 8px var(--accent);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+  .nav-links{display:flex;gap:28px;font-family:var(--mono);font-size:13px;}
+  .nav-links a{color:var(--text-dim);transition:color .2s;position:relative;}
+  .nav-links a:hover{color:var(--accent);}
+  .nav-links a::before{content:'./';color:var(--accent-dim);}
+
+  @media (max-width:640px){
+    .nav-links{gap:16px;font-size:11px;}
+  }
+
+  /* HERO */
+  .hero{
+    padding:120px 0 80px;
+    position:relative;
+  }
+  .terminal{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 20px 60px -20px rgba(0,0,0,0.6);
+  }
+  .terminal-bar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:10px 14px;
+    background:var(--surface-2);
+    border-bottom:1px solid var(--line);
+  }
+  .terminal-bar span{width:11px;height:11px;border-radius:50%;display:inline-block;}
+  .terminal-bar .r{background:#ff5f56;}
+  .terminal-bar .y{background:#ffbd2e;}
+  .terminal-bar .g{background:#27c93f;}
+  .terminal-bar .title{
+    margin-left:8px;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-dim);
+  }
+  .terminal-body{
+    padding:32px 28px 36px;
+    font-family:var(--mono);
+  }
+  .prompt-line{
+    color:var(--text-dim);
+    font-size:14px;
+    margin-bottom:6px;
+  }
+  .prompt-line .sym{color:var(--accent);}
+  .typed-name{
+    font-size:clamp(28px, 6vw, 46px);
+    font-weight:800;
+    color:var(--text);
+    letter-spacing:-0.02em;
+    white-space:nowrap;
+    border-right:3px solid var(--accent);
+    display:inline-block;
+  }
+  .role-line{
+    margin-top:14px;
+    font-size:15px;
+    color:var(--accent);
+  }
+  .role-line .bracket{color:var(--text-dim);}
+  .hero-desc{
+    margin-top:20px;
+    font-family:var(--sans);
+    font-size:15.5px;
+    color:var(--text-dim);
+    max-width:560px;
+    line-height:1.7;
+  }
+  .hero-meta{
+    margin-top:24px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .tag{
+    font-family:var(--mono);
+    font-size:11.5px;
+    padding:5px 10px;
+    border:1px solid var(--line);
+    border-radius:4px;
+    color:var(--text-dim);
+    background:var(--surface-2);
+  }
+  .cta-row{
+    margin-top:28px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:var(--mono);
+    font-size:13px;
+    padding:10px 18px;
+    border-radius:6px;
+    border:1px solid var(--accent);
+    color:var(--accent);
+    transition:all .2s;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .btn.primary{
+    background:var(--accent);
+    color:#0D1117;
+    font-weight:600;
+  }
+  .btn.primary:hover{background:var(--accent-dim);border-color:var(--accent-dim);}
+  .btn:not(.primary):hover{background:rgba(79,178,134,0.1);}
+
+  /* SECTION GENERIC */
+  section{padding:72px 0;}
+  .section-label{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:8px;
+  }
+  .section-label::before{content:'#';color:var(--text-dim);}
+  .section-title{
+    font-family:var(--mono);
+    font-size:clamp(22px,4vw,30px);
+    font-weight:700;
+    margin-bottom:36px;
+    color:var(--text);
+  }
+  .divider{
+    border:none;
+    border-top:1px solid var(--line);
+  }
+
+  /* ABOUT */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:40px;
+  }
+  @media (max-width:720px){.about-grid{grid-template-columns:1fr;}}
+  .about-text p{color:var(--text-dim);margin-bottom:16px;font-size:15.5px;}
+  .about-text strong{color:var(--text);font-weight:600;}
+  .stack-box{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:20px;
+  }
+  .stack-box h4{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-dim);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    margin-bottom:14px;
+  }
+  .stack-list{display:flex;flex-wrap:wrap;gap:8px;}
+  .stack-list span{
+    font-family:var(--mono);
+    font-size:12px;
+    background:var(--surface-2);
+    border:1px solid var(--line);
+    color:var(--text);
+    padding:5px 9px;
+    border-radius:4px;
+  }
+
+  /* PROJECTS */
+  .log{
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+    background:var(--surface);
+  }
+  .log-entry{
+    border-bottom:1px solid var(--line);
+    padding:22px 24px;
+    cursor:pointer;
+    transition:background .2s;
+  }
+  .log-entry:last-child{border-bottom:none;}
+  .log-entry:hover{background:var(--surface-2);}
+  .log-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .log-name{
+    font-family:var(--mono);
+    font-weight:700;
+    font-size:16px;
+    color:var(--text);
+  }
+  .log-status{
+    font-family:var(--mono);
+    font-size:10.5px;
+    padding:3px 8px;
+    border-radius:3px;
+    letter-spacing:.04em;
+    white-space:nowrap;
+  }
+  .status-shipped{background:rgba(79,178,134,0.15);color:var(--accent);border:1px solid rgba(79,178,134,0.3);}
+  .status-progress{background:rgba(201,125,76,0.15);color:var(--warm);border:1px solid rgba(201,125,76,0.3);}
+  .log-summary{
+    font-size:14px;
+    color:var(--text-dim);
+    margin-top:8px;
+  }
+  .log-detail{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .3s ease;
+  }
+  .log-entry.open .log-detail{max-height:300px;}
+  .log-detail-inner{padding-top:14px;}
+  .log-detail-inner p{font-size:14px;color:var(--text-dim);margin-bottom:10px;}
+  .log-stack{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+  .log-stack span{
+    font-family:var(--mono);font-size:11px;
+    background:var(--bg);border:1px solid var(--line);
+    color:var(--accent);padding:3px 7px;border-radius:3px;
+  }
+  .log-toggle{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-dim);
+  }
+
+  /* EXPERIENCE */
+  .timeline{position:relative;padding-left:28px;}
+  .timeline::before{
+    content:'';
+    position:absolute;
+    left:5px;top:6px;bottom:6px;
+    width:1px;
+    background:var(--line);
+  }
+  .tl-item{position:relative;margin-bottom:28px;}
+  .tl-item::before{
+    content:'';
+    position:absolute;
+    left:-28px;top:5px;
+    width:9px;height:9px;
+    border-radius:50%;
+    background:var(--bg);
+    border:2px solid var(--accent);
+  }
+  .tl-head{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:4px;
+  }
+  .tl-role{font-family:var(--mono);font-weight:700;font-size:15px;color:var(--text);}
+  .tl-dates{font-family:var(--mono);font-size:12px;color:var(--text-dim);}
+  .tl-company{font-size:13.5px;color:var(--accent);margin-bottom:6px;}
+  .tl-desc{font-size:14px;color:var(--text-dim);}
+
+  /* CONTACT */
+  .contact-box{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:36px;
+    text-align:center;
+  }
+  .contact-box p{color:var(--text-dim);margin-bottom:24px;font-size:15px;}
+  .contact-links{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+
+  footer{
+    padding:32px 0 48px;
+    text-align:center;
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--text-dim);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  a:focus-visible, button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-brand"><span class="dot"></span>shalon@portfolio</div>
+    <div class="nav-links">
+      <a href="#about">about</a>
+      <a href="#projects">projects</a>
+      <a href="#experience">experience</a>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span class="r"></span><span class="y"></span><span class="g"></span>
+        <span class="title">shalon — zsh</span>
+      </div>
+      <div class="terminal-body">
+        <div class="prompt-line"><span class="sym">$</span> whoami</div>
+        <div class="typed-name" id="typedName"></div>
+        <div class="role-line"><span class="bracket">&gt;</span> Data Science Student <span class="bracket">·</span> Python / SQL / ML</div>
+        <p class="hero-desc">
+          Building machine learning pipelines, cloud data engineering projects, and analytics tools — currently completing the ALX/ExploreAI Academy programme alongside a UCT Data Science with Python certificate. I like finding the same structural pattern showing up in completely different fields, and turning that into working code.
+        </p>
+        <div class="hero-meta">
+          <span class="tag">Johannesburg, ZA</span>
+          <span class="tag">Open to Junior Data Science roles</span>
+          <span class="tag">Available immediately</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn primary" href="#projects">View projects →</a>
+          <a class="btn" href="cv/Shalon_Ngobeni_CV_Tech.pdf" target="_blank">Download CV</a>
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section id="about">
+    <div class="wrap reveal">
+      <div class="section-label">about</div>
+      <h2 class="section-title">cat about.md</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>I'm a <strong>Data Science student</strong> based in Johannesburg, working through the <strong>ALX/ExploreAI Academy</strong> programme and holding a <strong>UCT Data Science with Python</strong> certificate. My background spans data analytics, quality control, and operations — which means I tend to approach modelling problems the way I'd approach a process audit: find where the data breaks down before trying to optimise anything.</p>
+          <p>Recent work has focused on <strong>end-to-end ML pipelines</strong> (LightGBM, scikit-learn), a <strong>cloud-native fraud detection lakehouse</strong> on AWS, and clean, modular <strong>OOP data pipelines</strong> for agricultural data validation. I'm comfortable in Python, SQL, and increasingly in infrastructure-as-code with Terraform.</p>
+          <p>Outside of data work, I write, take photographs, and run small ventures including a butchery and grill business — intentional living and structured systems show up in both my code and my daily routine.</p>
+        </div>
+        <div class="stack-box">
+          <h4>core stack</h4>
+          <div class="stack-list">
+            <span>Python</span><span>SQL</span><span>Pandas</span><span>scikit-learn</span>
+            <span>LightGBM</span><span>AWS</span><span>Terraform</span><span>Tableau</span>
+            <span>Git</span><span>Docker</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section id="projects">
+    <div class="wrap reveal">
+      <div class="section-label">projects</div>
+      <h2 class="section-title">ls -la ./projects</h2>
+      <div class="log">
+
+        <div class="log-entry">
+          <div class="log-head">
+            <span class="log-name">aws-fraud-lakehouse</span>
+            <span class="log-status status-shipped">SHIPPED</span>
+          </div>
+          <p class="log-summary">Medallion-architecture financial lakehouse for fraud detection on AWS.</p>
+          <div class="log-detail">
+            <div class="log-detail-inner">
+              <p>Designed a Bronze/Silver/Gold lakehouse using Kinesis for streaming ingestion, Glue for ETL, Iceberg tables on S3 for storage, Athena for querying, and SageMaker for model training — all provisioned with Terraform and validated with Great Expectations.</p>
+              <div class="log-stack"><span>AWS Kinesis</span><span>Glue</span><span>Iceberg</span><span>SageMaker</span><span>Terraform</span></div>
+            </div>
+          </div>
+          <div class="log-toggle">+ expand</div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-head">
+            <span class="log-name">nedbank-zindi-rmsle</span>
+            <span class="log-status status-shipped">SHIPPED</span>
+          </div>
+          <p class="log-summary">LightGBM pipeline predicting customer transaction counts for a Zindi competition.</p>
+          <div class="log-detail">
+            <div class="log-detail-inner">
+              <p>Built an incremental, reproducible LightGBM pipeline from scratch in VS Code, optimised against RMSLE scoring — focused on clean feature engineering and validation splits rather than chasing leaderboard tricks.</p>
+              <div class="log-stack"><span>LightGBM</span><span>Pandas</span><span>RMSLE</span></div>
+            </div>
+          </div>
+          <div class="log-toggle">+ expand</div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-head">
+            <span class="log-name">maji-ndogo-pipeline</span>
+            <span class="log-status status-shipped">SHIPPED</span>
+          </div>
+          <p class="log-summary">Modular OOP pipeline for agricultural data ingestion and validation.</p>
+          <div class="log-detail">
+            <div class="log-detail-inner">
+              <p>A four-module Python pipeline — data ingestion, field data processing, weather data processing, and submission — built around clean class design rather than one-off scripts. Restructured from a course project into a standalone repo that reads as real-world work.</p>
+              <div class="log-stack"><span>Python OOP</span><span>Pandas</span><span>Data Validation</span></div>
+            </div>
+          </div>
+          <div class="log-toggle">+ expand</div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-head">
+            <span class="log-name">mutiny-x-alx-analytics</span>
+            <span class="log-status status-shipped">SHIPPED</span>
+          </div>
+          <p class="log-summary">Instagram Insights and campaign performance analysis for an artist client.</p>
+          <div class="log-detail">
+            <div class="log-detail-inner">
+              <p>Analysed engagement and campaign data for artist client REY, then built a 13-week KPI growth tracker in Excel and delivered findings via a scripted video walkthrough.</p>
+              <div class="log-stack"><span>Excel</span><span>KPI Tracking</span><span>Reporting</span></div>
+            </div>
+          </div>
+          <div class="log-toggle">+ expand</div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-head">
+            <span class="log-name">forest-walk-analytics</span>
+            <span class="log-status status-shipped">SHIPPED</span>
+          </div>
+          <p class="log-summary">Participation trend analysis for quarterly hiking and wellness events.</p>
+          <div class="log-detail">
+            <div class="log-detail-inner">
+              <p>Used Python for analysis and Tableau for visualisation to identify engagement patterns and recommend strategies for improving turnout at recurring wellness events.</p>
+              <div class="log-stack"><span>Python</span><span>Tableau</span></div>
+            </div>
+          </div>
+          <div class="log-toggle">+ expand</div>
+        </div>
+
+        <div class="log-entry">
+          <div class="log-head">
+            <span class="log-name">commission-tracker-app</span>
+            <span class="log-status status-progress">IN PROGRESS</span>
+          </div>
+          <p class="log-summary">Desktop commission tracker for Phambili Butchery and Grill (Pty) Ltd.</p>
+          <div class="log-detail">
+            <div class="log-detail-inner">
+              <p>A Python desktop app built with tkinter/ttkbootstrap to track commissions, export records to CSV, and auto-generate branded PDF invoices for clients.</p>
+              <div class="log-stack"><span>Python</span><span>tkinter</span><span>ttkbootstrap</span><span>PDF Generation</span></div>
+            </div>
+          </div>
+          <div class="log-toggle">+ expand</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section id="experience">
+    <div class="wrap reveal">
+      <div class="section-label">experience</div>
+      <h2 class="section-title">git log --oneline</h2>
+      <div class="timeline">
+
+        <div class="tl-item">
+          <div class="tl-head">
+            <span class="tl-role">Picker and Packer</span>
+            <span class="tl-dates">Nov 2024 — Present</span>
+          </div>
+          <div class="tl-company">Food Lovers Market</div>
+          <p class="tl-desc">Streamlined order fulfilment workflows, contributing to a 15% improvement in picking efficiency.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-head">
+            <span class="tl-role">Administrative Assistant</span>
+            <span class="tl-dates">Feb — Nov 2024</span>
+          </div>
+          <div class="tl-company">Amucan Services</div>
+          <p class="tl-desc">Analysed operational data to improve service delivery scheduling, lifting efficiency by 10%.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-head">
+            <span class="tl-role">Quality Controller</span>
+            <span class="tl-dates">Oct 2023 — Feb 2024</span>
+          </div>
+          <div class="tl-company">Triton SCS</div>
+          <p class="tl-desc">Maintained a 98% defect-free rate through root cause analysis and automated Excel reporting.</p>
+        </div>
+
+        <div class="tl-item">
+          <div class="tl-head">
+            <span class="tl-role">Stock Taker</span>
+            <span class="tl-dates">July 2023</span>
+          </div>
+          <div class="tl-company">GRW Engineering (Pty) Ltd</div>
+          <p class="tl-desc">Ran inventory audits using data analysis to cut stock variances by 12%.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section id="contact">
+    <div class="wrap reveal">
+      <div class="section-label">contact</div>
+      <h2 class="section-title">curl -X POST /contact</h2>
+      <div class="contact-box">
+        <p>Open to junior data science, data analyst, and data engineering roles. Always happy to talk about a project or a dataset.</p>
+        <div class="contact-links">
+          <a class="btn primary" href="mailto:shalonngobeni23@gmail.com">Email me</a>
+          <a class="btn" href="tel:0621774414">062 177 4414</a>
+          <a class="btn" href="cv/Shalon_Ngobeni_CV_Tech.pdf" target="_blank">Download CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    Built with HTML, CSS &amp; a fair amount of curiosity. © <span id="year"></span> Shalon Ngobeni.
+  </div>
+</footer>
+
+<script>
+  // typing effect
+  const name = "shalon-ngobeni";
+  const el = document.getElementById('typedName');
+  let i = 0;
+  function type(){
+    if(i <= name.length){
+      el.textContent = name.slice(0, i);
+      i++;
+      setTimeout(type, 80);
+    } else {
+      el.style.borderRight = '3px solid transparent';
+    }
+  }
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    el.textContent = name;
+  } else {
+    type();
+  }
+
+  // log entry toggles
+  document.querySelectorAll('.log-entry').forEach(entry => {
+    entry.addEventListener('click', () => {
+      const wasOpen = entry.classList.contains('open');
+      entry.classList.toggle('open');
+      const toggle = entry.querySelector('.log-toggle');
+      toggle.textContent = wasOpen ? '+ expand' : '− collapse';
+    });
+  });
+
+  // scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => obs.observe(r));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
